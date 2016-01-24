@@ -1,0 +1,67 @@
+<head>
+	<title>Meta Parser</title>
+</head>
+
+<body>
+	{{> content}}
+</body>
+
+<template name="content">
+	<div class="container">
+		<h1>Meta parser</h1>
+		<p>Select tags for parser:</p>
+		<label class="checkbox-inline">
+			<input type="checkbox" id="tag_a" value="tag_a"/> a
+		</label>
+		<label class="checkbox-inline">
+			<input type="checkbox" id="tag_img" value="tag_img"/> img
+		</label>
+		<label class="checkbox-inline">
+			<input type="checkbox" id="tag_title" value="tag_title"/> title
+		</label>
+		<br/><br/>
+		
+		<p>meta (<em>can select more than one</em>)</p>
+		<select multiple class="form-control" size = "8" id = "tag_meta">
+			<option>author</option>
+			<option>description</option>
+			<option>keywords</option>
+			<option>fb</option>
+			<option>og</option>
+			<option>twitter</option>
+			<option>al</option>
+			<option>yandex</option>
+		</select>
+		<br/>
+		
+		<p>Write your url (start from http:// or https://) and click <strong>Start</strong></p>
+		<input type="text" class = "form-control" id = "url" placeholder="http://youtube.com"/>
+		<br/>
+
+		<label class="checkbox-inline">
+			<input type="checkbox" id="basic_example" value="basic_example"/> <em>I want only basic description (description, image, keywords and title)</em>
+		</label>
+		
+		<div class = "js-code">
+			<em>Example of input params:</em><br/>
+			<code>
+				{
+					'url' : 'http://www.amazon.com',
+					title : true,
+					meta : [
+						description, keywords, og:image, twitter:image, og:title, twitter:title
+					]
+				}
+			</code>
+		</div>
+		<br/><br/>
+		
+		<button type="button" class="btn btn-success js-start-parse">Start</button>
+		<button type="button" class="btn btn-warning js-reset">Reset</button>
+		<br/><br/>
+		
+		{{#if result}}
+			<pre>{{result}}</pre>
+		{{/if}}
+	</div>
+</template>
